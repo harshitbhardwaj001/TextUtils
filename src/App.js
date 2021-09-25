@@ -20,7 +20,20 @@ function App() {
       setAlert(null);
     }, 2000);
   };
-  const toggleMode = () => {
+
+  const removeBodyClasses = ()=>{
+    document.body.classList.remove('bg-light')
+    document.body.classList.remove('bg-dark')
+    document.body.classList.remove('bg-success')
+    document.body.classList.remove('bg-warning')
+    document.body.classList.remove('bg-danger')
+    document.body.classList.remove('bg-primary')
+  }
+
+  const toggleMode = (cls) => {
+    removeBodyClasses()
+    document.body.classList.add('bg-' + cls)
+
     if (mode === "light") {
       setMode("dark");
       document.body.style.backgroundColor = "";
@@ -47,12 +60,12 @@ function App() {
         <div className="container my-3">
           <Switch>
             <Route path="/about">
-              <About />
+              <About mode={mode}/>
             </Route>
             <Route path="/">
               <TextForm
                 heading="Enter Your Text To Analyze Below"
-                showAlert={showAlert}
+                showAlert={showAlert} mode={mode}
               />
             </Route>
           </Switch>
