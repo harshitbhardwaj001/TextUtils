@@ -5,11 +5,13 @@ export default function TextForm(props) {
     let newText = text.toUpperCase();
     console.log("You have clicked on handleUpClick");
     setText(newText);
+    props.showAlert("Converted to UpperCase!", "success");
   };
   const handleLoClick = () => {
     let newText = text.toLowerCase();
     console.log("You have clicked on handleLoClick");
     setText(newText);
+    props.showAlert("Converted to LowerCase!", "success");
   };
   const handleOnChange = (event) => {
     console.log("On Change");
@@ -23,6 +25,7 @@ export default function TextForm(props) {
         <div className="mb-3">
           <textarea
             className="form-control"
+            style={{backgroundColor: props.mode==='dark'?'#212529':'white'}}
             value={text}
             onChange={handleOnChange}
             id="myBox"
