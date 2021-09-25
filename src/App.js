@@ -1,11 +1,11 @@
 import "./App.css";
-// import About from "./Components/About";
+import About from "./Components/About";
 import Navbar from "./Components/Navbar";
 import TextForm from "./Components/TextForm";
 import React, { useState } from "react";
 import Alert from "./Components/Alert";
 
-// import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 function App() {
   const [mode, setMode] = useState("dark"); // Whether dark mode is enabled or not
@@ -35,6 +35,7 @@ function App() {
   };
   return (
     <>
+      <Router>
         <Navbar
           title="TextUtils"
           about="About"
@@ -44,8 +45,19 @@ function App() {
         <Alert alert={alert} />
 
         <div className="container my-3">
-              <TextForm heading="Enter Your Text To Analyze Below" showAlert={showAlert}/>
+          <Switch>
+            <Route path="/about">
+              <About />
+            </Route>
+            <Route path="/">
+              <TextForm
+                heading="Enter Your Text To Analyze Below"
+                showAlert={showAlert}
+              />
+            </Route>
+          </Switch>
         </div>
+      </Router>
     </>
   );
 }
